@@ -6,7 +6,7 @@
 </head>
 <body>
     <h2>Chỉnh sửa</h2>
-    <form th:action="@{/products/edit/{id}(id=${customerDTO.id})}" th:object="${customerDTO}" method="post">
+    <form th:action="@{/customers/edit/{id}(id=${customerDTO.id})}" th:object="${customerDTO}" method="post">
         <div>
             first name <input type="text" th:field="*{firstName}"/>
             <span th:if="${#fields.hasErrors('firstName')}" class="error" th:errors="*{firstName}"></span>
