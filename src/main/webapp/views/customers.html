@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>List Customer</h2>
+    <form th:action="@{/customers}" method="get">
+        <input type="text" name="keyword" th:value="${keyword}" placeholder="Tìm kiếm theo tên" />
+        <button type="submit">Tìm kiếm</button>
+    </form>
+
+    <a href="/customers/add">Thêm mới Customer</a>
+
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>first name</th>
+                <th>last name</th>
+                <th>phone</th>
+                <th>address</th>
+                <th>image</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${customers}">
+                <td th:text="${c.id}">ID</td>
+                <td th:text="${c.firstName}">first name</td>
+                <td th:text="${c.lastName}">last name</td>
+                <td th:text="${c.phone}">phone</td>
+                <td th:text="${c.address}">address</td>
+                <td th:text="${c.image}">image</td>
+                <td>
+                    <a th:href="@{/customers/edit/{id}(id=${c.id})}">Sửa</a>
+                    <a th:href="@{/customers/delete/{id}(id=${c.id})}">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Chỉnh sửa</h2>
+    <form th:action="@{customers/add}" th:object="${customerDTO}" method="post">
+        <div>
+            first name <input type="text" th:field="*{firstName}"/>
+            <span th:if="${#fields.hasErrors('firstName')}" class="error" th:errors="*{firstName}"></span>
+        </div>
+        <div>
+            last name <input type="text" th:field="*{lastName}"/>
+            <span th:if="${#fields.hasErrors('lastName')}" class="error" th:errors="*{lastName}"></span>
+        </div>
+        <div>
+            phone <input type="text" th:field="*{phone}"/>
+            <span th:if="${#fields.hasErrors('phone')}" class="error" th:errors="*{v}"></span>
+        </div>
+        <div>
+            address <input type="text" th:field="*{address}"/>
+            <span th:if="${#fields.hasErrors('address')}" class="error" th:errors="*{address}"></span>
+        </div>
+        <div>
+            image <input type="text" th:field="*{image}"/>
+            <span th:if="${#fields.hasErrors('image')}" class="error" th:errors="*{image}"></span>
+        </div>
+        <button type="submit">Chỉnh sửa</button>
+        <a th:herf="@{/customers}">Hủy</a>
+    </form>
+</body>
+</html>
