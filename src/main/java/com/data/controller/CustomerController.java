@@ -44,6 +44,8 @@ public class CustomerController {
         customer.setAddress(customerDTO.getAddress());
         customer.setImage(customerDTO.getImage());
 
+        customerService.save(customer);
+
         return "redirect:/customers";
     }
 
