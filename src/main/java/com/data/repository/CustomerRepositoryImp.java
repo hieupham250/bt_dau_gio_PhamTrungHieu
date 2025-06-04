@@ -17,7 +17,7 @@ public class CustomerRepositoryImp implements CustomerRepository {
 
     @Override
     public List<Customer> findAll(String keyword) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         Query<Customer> query = session.createQuery("from Customer where name like :keyword or lastName", Customer.class);
         query.setParameter("keyword", "%" + keyword + "%");
         return query.getResultList();
@@ -25,14 +25,14 @@ public class CustomerRepositoryImp implements CustomerRepository {
 
     @Override
     public Customer findById(int id) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         Customer customer = session.get(Customer.class, id);
         return customer;
     }
 
     @Override
     public void save(Customer customer) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.save(customer);
         transaction.commit();
@@ -40,7 +40,7 @@ public class CustomerRepositoryImp implements CustomerRepository {
 
     @Override
     public void update(Customer customer) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.update(customer);
         transaction.commit();
@@ -48,7 +48,7 @@ public class CustomerRepositoryImp implements CustomerRepository {
 
     @Override
     public void delete(int id) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         Customer customer = session.get(Customer.class, id);
         if (customer != null) {
