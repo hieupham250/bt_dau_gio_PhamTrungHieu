@@ -18,7 +18,7 @@ public class CustomerRepositoryImp implements CustomerRepository {
     @Override
     public List<Customer> findAll(String keyword) {
         Session session = sessionFactory.openSession();
-        Query<Customer> query = session.createQuery("from Customer where name like :keyword or lastName", Customer.class);
+        Query<Customer> query = session.createQuery("from Customer where lastName like :keyword", Customer.class);
         query.setParameter("keyword", "%" + keyword + "%");
         return query.getResultList();
     }
